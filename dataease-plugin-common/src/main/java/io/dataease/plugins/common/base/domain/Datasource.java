@@ -26,5 +26,7 @@ public class Datasource implements Serializable {
     @ApiModelProperty(value = "配置详情", required = true)
     private String configuration;
 
+    private String unitId;
+
     private static final long serialVersionUID = 1L;
 }

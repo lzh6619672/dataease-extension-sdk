@@ -10,6 +10,7 @@
     <result column="update_time" jdbcType="BIGINT" property="updateTime" />
     <result column="create_by" jdbcType="VARCHAR" property="createBy" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="unit_id" jdbcType="VARCHAR" property="unitId" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="io.dataease.plugins.common.base.domain.Datasource">
     <result column="configuration" jdbcType="LONGVARCHAR" property="configuration" />
@@ -73,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, `name`, `desc`, `type`, create_time, update_time, create_by, `status`
+    id, `name`, `desc`, `type`, create_time, update_time, create_by, `status`,unit_id
   </sql>
   <sql id="Blob_Column_List">
     configuration
@@ -129,11 +130,11 @@
   <insert id="insert" parameterType="io.dataease.plugins.common.base.domain.Datasource">
     insert into datasource (id, `name`, `desc`, 
       `type`, create_time, update_time, 
-      create_by, `status`, configuration
+      create_by, `status`, configuration,unit_id
       )
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
       #{type,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
-      #{createBy,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{configuration,jdbcType=LONGVARCHAR}
+      #{createBy,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{configuration,jdbcType=LONGVARCHAR}, #{unitId,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="io.dataease.plugins.common.base.domain.Datasource">
@@ -166,6 +167,9 @@
       <if test="configuration != null">
         configuration,
       </if>
+      <if test="unitId != null">
+        unit_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -194,6 +198,9 @@
       </if>
       <if test="configuration != null">
         #{configuration,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="unitId != null">
+        #{unit_id,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -233,6 +240,9 @@
       <if test="record.configuration != null">
         configuration = #{record.configuration,jdbcType=LONGVARCHAR},
       </if>
+      <if test="record.unitId != null">
+        unit_id = #{record.unitId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -248,7 +258,8 @@
       update_time = #{record.updateTime,jdbcType=BIGINT},
       create_by = #{record.createBy,jdbcType=VARCHAR},
       `status` = #{record.status,jdbcType=VARCHAR},
-      configuration = #{record.configuration,jdbcType=LONGVARCHAR}
+      configuration = #{record.configuration,jdbcType=LONGVARCHAR},
+      unit_id = #{record.unitId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -262,7 +273,8 @@
       create_time = #{record.createTime,jdbcType=BIGINT},
       update_time = #{record.updateTime,jdbcType=BIGINT},
       create_by = #{record.createBy,jdbcType=VARCHAR},
-      `status` = #{record.status,jdbcType=VARCHAR}
+      `status` = #{record.status,jdbcType=VARCHAR},
+      `unit_id` = #{record.unitId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -294,6 +306,9 @@
       <if test="configuration != null">
         configuration = #{configuration,jdbcType=LONGVARCHAR},
       </if>
+      <if test="unitId != null">
+        unit_id = #{unitId,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -306,7 +321,8 @@
       update_time = #{updateTime,jdbcType=BIGINT},
       create_by = #{createBy,jdbcType=VARCHAR},
       `status` = #{status,jdbcType=VARCHAR},
-      configuration = #{configuration,jdbcType=LONGVARCHAR}
+      configuration = #{configuration,jdbcType=LONGVARCHAR},
+      unit_id = #{unitId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="io.dataease.plugins.common.base.domain.Datasource">
@@ -317,7 +333,8 @@
       create_time = #{createTime,jdbcType=BIGINT},
       update_time = #{updateTime,jdbcType=BIGINT},
       create_by = #{createBy,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=VARCHAR}
+      `status` = #{status,jdbcType=VARCHAR},
+      `unit_id` = #{unitId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

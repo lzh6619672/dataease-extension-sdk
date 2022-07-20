@@ -643,6 +643,11 @@ public class DatasourceExample {
             addCriterion("`status` not between", value1, value2, "status");
             return (Criteria) this;
         }
+
+        public Criteria andUnitIdEqualTo(String value1) {
+            addCriterion("`unit_id` =", value1,"unitId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -200,7 +200,7 @@
         #{configuration,jdbcType=LONGVARCHAR},
       </if>
       <if test="unitId != null">
-        #{unit_id,jdbcType=VARCHAR},
+        #{unitId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

@@ -22,5 +22,7 @@ public class DatasetGroup implements Serializable {
     @ApiModelProperty("创建时间")
     private Long createTime;
 
+    private String unitId;
+
     private static final long serialVersionUID = 1L;
 }

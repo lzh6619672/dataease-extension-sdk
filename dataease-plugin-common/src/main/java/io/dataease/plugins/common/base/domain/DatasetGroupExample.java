@@ -104,6 +104,11 @@ public class DatasetGroupExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andUnitIdEqualTo(String value) {
+            addCriterion("unit_id =", value, "unitId");
+            return (Criteria) this;
+        }
+
         public Criteria andIdIsNull() {
             addCriterion("id is null");
             return (Criteria) this;

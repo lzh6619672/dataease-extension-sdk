@@ -9,6 +9,7 @@
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="create_by" jdbcType="VARCHAR" property="createBy" />
     <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="unit_id" jdbcType="VARCHAR" property="unitId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, `name`, pid, `level`, `type`, create_by, create_time
+    id, `name`, pid, `level`, `type`, create_by, create_time,unit_id
   </sql>
   <select id="selectByExample" parameterType="io.dataease.plugins.common.base.domain.DatasetGroupExample" resultMap="BaseResultMap">
     select
@@ -104,10 +105,10 @@
   <insert id="insert" parameterType="io.dataease.plugins.common.base.domain.DatasetGroup">
     insert into dataset_group (id, `name`, pid, 
       `level`, `type`, create_by, 
-      create_time)
+      create_time,unit_id)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
       #{level,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=BIGINT})
+      #{createTime,jdbcType=BIGINT},#{unitId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="io.dataease.plugins.common.base.domain.DatasetGroup">
     insert into dataset_group
@@ -133,6 +134,9 @@
       <if test="createTime != null">
         create_time,
       </if>
+      <if test="unitId != null">
+        unit_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -155,6 +159,9 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="unitId != null">
+        #{unitId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +195,9 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=BIGINT},
       </if>
+      <if test="record.unitId != null">
+        unit_id = #{record.unitId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +211,8 @@
       `level` = #{record.level,jdbcType=INTEGER},
       `type` = #{record.type,jdbcType=VARCHAR},
       create_by = #{record.createBy,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=BIGINT}
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      unit_id = #{record.unitId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +238,9 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=BIGINT},
       </if>
+      <if test="unitId != null">
+        unit_id = #{unitId,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -237,7 +251,8 @@
       `level` = #{level,jdbcType=INTEGER},
       `type` = #{type,jdbcType=VARCHAR},
       create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=BIGINT}
+      create_time = #{createTime,jdbcType=BIGINT},
+      unit_id = #{unitId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
